@@ -9,14 +9,23 @@ const router = express.Router();
 router.get("/lists", listController.getAllLists);
 router.get("/lists/:id", listController.getListById);
 router.post("/lists", listController.createList);
-router.patch("/lists/:id", listController.updateList);
+router.patch("/lists/:id", listController.modifyList);
 router.delete("/lists/:id", listController.deleteList);
-router.get("/lists/:id/cards", cardController.getAllCards);
-router.post("/lists/:id", cardController.createCard);
-router.patch("/lists/:id/cards/:id", cardController.updateCard);
-router.delete("/lists/:id/cards/:id", cardController.deleteCard);
 
-router.get("/lists/:id/cards/:id/tags", tagController.getTags);
-router.post("/lists/:id/cards/:id/", tagController.createTag);
+router.get("/lists/:id/cards", cardController.getCardsInList);
+router.get("/cards/:id", cardController.getOneCard);
+router.post("/cards", cardController.createCard);
+router.patch("/cards/:id", cardController.modifyCard);
+router.delete("/cards/:id", cardController.deleteCard);
+
+router.get("/tags", tagController.getTags);
+router.post("/tags", tagController.createTag);
+router.patch("/tags/:id", tagController.modifyTag);
+router.delete("/tags/:id", tagController.deleteTag);
+
+/* ROUTES D4ASSOCIATION */
+
+router.post("/cards/:id/tags", tagController.associateTagToCard);
+router.delete("/cards/:cardId/tags/:tagId", tagController.removeTagToCard);
 
 module.exports = router;

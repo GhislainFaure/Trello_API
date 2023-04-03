@@ -43,7 +43,7 @@ const listController = {
       res.status(500).json(error.toString());
     }
   },
-  updateList: async (req, res) => {
+  modifyList: async (req, res) => {
     // comment update avec sequelize
     try {
       const listToModify = await List.findByPk(req.params.id);
