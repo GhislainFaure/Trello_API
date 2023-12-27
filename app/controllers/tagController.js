@@ -97,8 +97,8 @@ const tagController = {
   },
   removeTagToCard: async (req, res) => {
     try {
-      const cardId = req.params.id;
-      const tagId = req.body.tag_id;
+    
+      const { cardId, tagId } = req.params;
 
       let card = await Card.findByPk(cardId, {
         include: ["tags"],
